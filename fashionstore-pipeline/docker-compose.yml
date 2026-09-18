@@ -1,0 +1,13 @@
+# docker-compose.yml
+services:
+  localstack:
+    image: localstack/localstack:3.5
+    ports:
+      - "127.0.0.1:4566:4566"
+    environment:
+      - AWS_DEFAULT_REGION=eu-west-1
+      - DEBUG=0
+    volumes:
+      # Necesario para Lambda EN LOS TRES SISTEMAS.
+      # Docker Desktop expone el socket también en Windows (WSL2).
+      - "/var/run/docker.sock:/var/run/docker.sock"
